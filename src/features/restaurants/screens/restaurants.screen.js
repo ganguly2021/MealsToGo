@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import styled from 'styled-components/native'
 import {
-  StyleSheet,
-  Text,
   View
 } from 'react-native';
 
@@ -11,38 +10,37 @@ import {
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 
+const Container = styled(View)`
+  flex: 1;
+`
+
+
+const SearchContainer = styled(View)`
+  padding: 16px;
+`;
+
+const RestaurantListContainer = styled(View)`
+  padding: 16px;
+  flex: 1;
+`;
+
 function RestaurantsScreen() {
   const [txtSearch, setTxtSearch] = useState('')
 
   return (
-    <View style={styles.container}>
-      <View style={styles.search}>
+    <Container>
+      <SearchContainer>
         <Searchbar
           placeholder="Search"
           onChangeText={(text) => setTxtSearch(text)}
           value={txtSearch}
         />
-      </View>
-      <View style={styles.list}>
+      </SearchContainer>
+      <RestaurantListContainer>
         <RestaurantInfoCard />
-      </View>
-    </View>
+      </RestaurantListContainer>
+    </Container>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  search: {
-    padding: 16
-  },
-  list: {
-    padding: 16,
-    flex: 1
-  }
-
-});
-
 
 export default RestaurantsScreen
